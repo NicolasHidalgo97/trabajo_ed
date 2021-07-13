@@ -140,7 +140,7 @@ tree.selection """
 #label_medico=Label(root, text="Medicos",font=("Verdana",11),height=2,width=8, bg="White").place(x=195,y=220)
 #boton_medico=Button(root, text="IR",font=("Verdana",11),height=2,width=6, bg="#93C2ED").place(x=200,y=250)
 
-global codigo,pos_p,agr_p,pos_al,pos_des,agr_m,pos_m,con_p_t,con_m_t
+global codigo,pos_p,agr_p,pos_al,pos_des,agr_m,pos_m,con_p_t,con_m_t,marcado
 pos_p=0    #posicion paciente
 pos_m=0    #posicion medico
 pos_al=2   #posicion alerta
@@ -150,12 +150,17 @@ pos_al_m=1 #posicion alerta medico
 agr_p=0 # los pacientes agregados de la lista de paciente para trabajar con insertar paciente
 agr_m=0 # los medicos agregados de la lista de medicos para trabajar con insertar paciente
 codigo=20 #id de tree SUMAR UNO AL HACER INSERT
+marcado=[] #marcado para eliminacion
 
 con_p_t=[] #conecta el id del tree con el paciente que se guarda (codigo,i)
 con_m_t=[] #conecta el id del tree con el medico que se guarda (codigo,i)
-con_apt=[(3,0),(8,1)] #conecta el pac bajo alerta al tree
-con_mpt=[(5,0),(10,1)] #conecta el med bajo alerta al tree
+con_apt=[] #conecta el pac bajo alerta al tree
+con_apt.append([3,0])
+con_apt.append([8,1])
 
+con_mpt=[] #conecta el med bajo alerta al tree
+con_mpt.append([5,0])
+con_mpt.append([10,1])
 # Insertando la lista de pacientes el Menú Arbol
 for i in range(agr_p,len(lista_paciente)):
     tree.insert('',tk.END,text=lista_paciente[i],iid=codigo,open=False,values=codigo)
@@ -200,6 +205,8 @@ latitudF=StringVar()
 longitudF=StringVar()
 
 patologiaF=StringVar()
+
+
 
 def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF,condicionF,latitudF,longitudF):
     #variables pacientes
@@ -304,10 +311,27 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
                 print(lista_paciente[i].rut,lista_paciente[i].nombre,lista_paciente[i].apellido,lista_paciente[i].fono,lista_paciente[i].ficha.direccion,lista_paciente[i].ficha.condicion,lista_paciente[i].ficha.observaciones)
 
     def eliminarPaciente(Rut):
+        global con_apt,con_p_t,marcado
+        z=0
         for i in lista_paciente:
             if i.rut==Rut.get():
                 lista_paciente.remove(i)
+                for x in con_apt:
+                    if x[1]==z:
+                        con_apt.remove(x)
+                        for y in range(0,len(con_apt)):
+                            if y>=x[1]:
+                                con_apt[y][1]-=1
+                for x in con_p_t:
+                    if x[1]==z:
+                        marcado.append(x[0])
+                        con_p_t.remove(x)
+                        for y in range(0,len(con_p_t)):
+                            if y>=x[1]:
+                                con_p_t[y][1]-=1
+
                 #actualizarTablaPtes()
+            z+=1
 
     btn_agregar=Button(paciente,text="Agregar",font=("Verdana",10),height=2,width=6, bg="#74C69D",command=partial(guardarPaciente,rutP,nombreP,apellidoP,numeroP,direccionF,patologiaF,observacionesF,agr_p,codigo,pos_p)).place(x=20,y=300)
     btn_editar=Button(paciente,text="Editar",font=("Verdana",10),height=2,width=6,command=partial(editarPaciente,rutP,nombreP,apellidoP,numeroP,direccionF,patologiaF,observacionesF)).place(x=90,y=300)
@@ -458,10 +482,26 @@ def editarMedico(Rut,Nombre,Apellido,Fono,Especialidad):
             profesional[i].setEspecialidad(Especialidad.get())
 
 def eliminarMedico(Rut):
-    for i in Profesional:
+    global con_mpt,con_m_t,marcado
+    z=0
+    for i in profesional:
         if i.rut==Rut.get():
-            Profesional.remove(i)
+            profesional.remove(i)
+            for x in con_mpt:
+                if x[1]==z:
+                    con_mpt.remove(x)
+                    for y in range(0,len(con_mpt)):
+                        if y>=x[1]:
+                            con_mpt[y][1]-=1
+            for x in con_m_t:
+                if x[1]==z:
+                    marcado.append(x[0])
+                    con_m_t.remove(x)
+                    for y in range(0,len(con_m_t)):
+                        if y>=x[1]:
+                            con_m_t[y][1]-=1
             #actualizarTablaPtes()
+        z+=1
 
 def emitirAlerta():
     contador=0
@@ -568,7 +608,7 @@ def insertarAlerta(paci,medi):
 def item_selected(event):
     for selected_item in tree.selection():
         # dictionary
-        global con_p_t
+        global con_p_t,marcado
         item = tree.item(selected_item)
         # list
         valor = item['values']
@@ -643,13 +683,16 @@ def item_selected(event):
                     tree.item(i[0],text=str(lista_paciente[i[1]])) 
             for i in con_m_t:
                 if tree.item(i[0],option='text')!=str(profesional[i[1]]):
-                    tree.item(i[0],text=str(profesional[i[1]])) 
+                    tree.item(i[0],text=str(profesional[i[1]]))
             for i in con_apt:
                 if tree.item(i[0],option='text')!=str(lista_paciente[i[1]]):
                     tree.item(i[0],text=str(lista_paciente[i[1]]))
             for i in con_mpt:
                 if tree.item(i[0],option='text')!=str(profesional[i[1]]):
-                    tree.item(i[0],text=str(profesional[i[1]]))        
+                    tree.item(i[0],text=str(profesional[i[1]]))    
+            for i in marcado:
+                tree.delete(i)
+            marcado=[]
 
         print(tree.item(2,option='text'))
         if nombreOpcion=="Emitir Alerta" :
@@ -671,7 +714,8 @@ def actualizarPaciente(valor,lista_paciente):
             tree.set(valor,value=lista_paciente)
             return
 
-
+def eliminarMenuPac(codigo):
+    tree.delete(codigo)
 
 # control de la opcion escogida
 tree.bind('<<TreeviewSelect>>', item_selected)
