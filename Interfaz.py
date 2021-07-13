@@ -90,6 +90,7 @@ imagen6 = tk.PhotoImage(file="comprobado.png")
 imagen7 = tk.PhotoImage(file="pendiente.png")
 imagen8 = tk.PhotoImage(file="advertencia.png")
 imagen9 = tk.PhotoImage(file="actualizar.png")
+imagen10= tk.PhotoImage(file="precaucion.png")
 #Alertas
 tree.insert('', tk.END, text='Alertas', iid=0, image=imagen1, open=False,values=0)
 tree.insert('', tk.END, text='Pendientes', iid=1, image=imagen7, open=False,values=1)
@@ -174,7 +175,7 @@ con_mpt.append([5,0])
 con_mpt.append([10,1])
 # Insertando la lista de pacientes el Menú Arbol
 for i in range(agr_p,len(lista_paciente)):
-    tree.insert('',tk.END,text=lista_paciente[i],iid=codigo,open=False,values=codigo)
+    tree.insert('',tk.END,text=lista_paciente[i],iid=codigo,open=False,values=codigo,image=imagen4)
     tree.move(codigo,12,pos_p)
     con_p_t.append([codigo,i])
 
@@ -185,7 +186,7 @@ for i in range(agr_p,len(lista_paciente)):
 
 # Insertando la lista de médicos en el Menú Arbol
 for i in range(agr_m,len(profesional)):
-    tree.insert('',tk.END,text=profesional[i],iid=codigo,open=False,values=codigo)
+    tree.insert('',tk.END,text=profesional[i],iid=codigo,open=False,values=codigo,image=imagen3)
     tree.move(codigo,13,pos_m)
     con_m_t.append([codigo,i])
 
@@ -216,6 +217,7 @@ latitudF=StringVar()
 longitudF=StringVar()
 
 patologiaF=StringVar()
+prioridad=StringVar()
 
 
 imagenM=tk.PhotoImage(file='fondo1.png')
@@ -597,62 +599,6 @@ def emitirAlerta():
         lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional)-1)])
         insertarAlerta(azar,randint(0,len(profesional)-1))
 
-def despacharAlerta():
-
-    despacho = Toplevel()
-    despacho.title("Despachar alerta")
-    despacho.geometry("310x420")
-    despacho.config(bg="#41576B")
-
-    lbl_alerta=Label(despacho, text="Alerta", bg="#41576B",fg="white",font=("Verdena",13))
-    lbl_prioridad=Label(despacho, text="Prioridad: ",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_paciente=Label(despacho,text="Paciente",bg="#41576B",fg="white",font=("Verdena",13))
-    lbl_nombreP=Label(despacho, text="Nombre: ",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_apellidoP=Label(despacho, text="Apellido: ",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_rutP=Label(despacho, text="Rut: ",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_direccion=Label(despacho, text="Direccion: ",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_fonoP=Label(despacho, text="Fono: ",bg="#41576B",fg="white",font=("Verdena",11))
-
-
-    lbl_med=Label(despacho,          text="Medico",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_nombreMed=Label(despacho,       text="Nombre :",bg="#41576B",fg="white")
-    lbl_apellidoMed=Label(despacho,     text="Apellido :",bg="#41576B",fg="white")
-    lbl_numeroMed=Label(despacho,       text="Numero :",bg="#41576B",fg="white")
-    lbl_rut=Label(despacho,          text="Rut :",bg="#41576B",fg="white")
-    lbl_especialidad=Label(despacho, text="Especialidad :",bg="#41576B",fg="white")
-
-    entry_nombre=Entry(despacho,textvariable=nombreM)
-    entry_apellido=Entry(despacho,textvariable=apellidoM)
-    entry_numero=Entry(despacho,textvariable=numeroM)
-    entry_rut=Entry(despacho,textvariable=rutM)
-    entry_especialidad=Entry(despacho,textvariable=especialidad)
-
-    #Campos despacho
-    lbl_med.grid(row=1,column=1, padx=5, pady=5, sticky=W)
-
-    lbl_rut.grid(row=2,column=0, padx=5, pady=5, sticky=E)
-    entry_rut.grid(row=2,column=1, padx=5, pady=5,sticky=W)
-
-    lbl_nombreMed.grid(row=3,column=0, padx=5, pady=5, sticky=E)
-    entry_nombre.grid(row=3,column=1, padx=5, pady=5,sticky=W)
-
-    lbl_apellidoMed.grid(row=4,column=0, padx=5, pady=5, sticky=E)
-    entry_apellido.grid(row=4,column=1, padx=5, pady=5,sticky=W)
-
-    lbl_numeroMed.grid(row=5,column=0, padx=5, pady=5, sticky=E)
-    entry_numero.grid(row=5,column=1, padx=5, pady=5,sticky=W)
-
-
-    lbl_especialidad.grid(row=6,column=0, padx=5, pady=5, sticky=E)
-    entry_especialidad.grid(row=6,column=1, padx=5, pady=5,sticky=W)
-
-    #BOTONES
-
-    btn_agregar=Button(despacho,text="Agregar",font=("Verdana",10),height=2,width=6,bg="#74C69D",command=partial(agregarMedico,rutM,nombreM,apellidoM,numeroM,especialidad)).place(x=20,y=300)
-    btn_editar=Button(despacho,text="Editar",font=("Verdana",10),height=2,width=6,command=partial(editarMedico,rutM,nombreM,apellidoM,numeroM,especialidad)).place(x=90,y=300)
-    btn_buscar=Button(despacho,text="Buscar",font=("Verdana",10),height=2,width=6,command=partial(buscarMedico,rutM)).place(x=160,y=300)
-    btn_eliminar=Button(despacho,text="Eliminar",font=("Verdana",10),height=2,width=6,bg="#9D0208",command=partial(eliminarMedico,rutM)).place(x=230,y=300)
-
 
 def insertarPaciente():
     global codigo
@@ -660,7 +606,7 @@ def insertarPaciente():
     global pos_p
     global con_p_t
     for i in range(agr_p,len(lista_paciente)):
-        tree.insert('',tk.END,text=lista_paciente[i],iid=codigo,open=False, values=codigo)
+        tree.insert('',tk.END,text=lista_paciente[i],iid=codigo,open=False, values=codigo,image=imagen4)
         tree.move(codigo,12,pos_p)
 
         con_p_t.append([codigo,i])
@@ -675,7 +621,7 @@ def insertarMedico():
     global agr_m
     global pos_m
     for i in range(agr_m,len(profesional)):
-        tree.insert('',tk.END,text=profesional[i],iid=codigo,open=False,values=codigo)
+        tree.insert('',tk.END,text=profesional[i],iid=codigo,open=False,values=codigo,image=imagen3)
         tree.move(codigo,13,pos_m)
 
         con_m_t.append([codigo,i])
@@ -687,19 +633,19 @@ def insertarMedico():
 def insertarAlerta(paci,medi):
     global codigo,pos_al,pos_des,con_apt,con_mpt
     if lista_alerta[pos_al].estado=="Pendiente":
-        tree.insert('', tk.END, text=lista_alerta[pos_al], iid=codigo, open=False,values=codigo)
+        tree.insert('', tk.END, text=lista_alerta[pos_al], iid=codigo, open=False,values=codigo,image=imagen10)
         tree.move(codigo, 1, pos_al)
         codigo+=1
-        tree.insert('', tk.END, text=lista_alerta[pos_al].paciente, iid=codigo, open=False,values=codigo)
+        tree.insert('', tk.END, text=lista_alerta[pos_al].paciente, iid=codigo, open=False,values=codigo,image=imagen10)
         tree.move(codigo, codigo-1, 0)
 
         con_apt.append([paci,codigo])
 
         codigo+=1
-        tree.insert('', tk.END, text=lista_alerta[pos_al].paciente.getFicha(), iid=codigo, open=False,values=codigo)
+        tree.insert('', tk.END, text=lista_alerta[pos_al].paciente.getFicha(), iid=codigo, open=False,values=codigo,image=imagen10)
         tree.move(codigo, codigo-1, 0)
         codigo+=1
-        tree.insert('', tk.END, text=lista_alerta[pos_al].profesional, iid=codigo, open=False,values=codigo)
+        tree.insert('', tk.END, text=lista_alerta[pos_al].profesional, iid=codigo, open=False,values=codigo,image=imagen10)
         tree.move(codigo, codigo-3, 1)
         
         con_mpt.append([medi,codigo])
@@ -803,7 +749,6 @@ def item_selected(event):
                 print(tree.parent(valor))
                 tree.move(tree.parent(valor),6,pos_p)
                 tree.delete(valor)
-                infoMedico(nombreM,apellidoM,numeroM,rutM,especialidad) 
                 return
                 
         if nombreOpcion=="Actualizar":
