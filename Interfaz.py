@@ -465,6 +465,45 @@ def infoPaciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,condic
     lbl_longitud.grid(row=11, column=0, padx=5, pady=5, sticky=E)
     entry_longitud.grid(row=11,column=1, padx=5, pady=5,sticky=W)
     
+def infoMedico(nombreM,apellidoM,numeroM,rutM,especialidad):
+    
+    medico = Toplevel()
+    medico.title("Agregar Medico")
+    medico.geometry("310x380")
+    medico.config(bg="#41576B")
+
+    lbl_med=Label(medico,          text="Medico",bg="#41576B",fg="white",font=("Verdena",11))
+    lbl_nombre=Label(medico,       text="Nombre :",bg="#41576B",fg="white")
+    lbl_apellido=Label(medico,     text="Apellido :",bg="#41576B",fg="white")
+    lbl_numero=Label(medico,       text="Numero :",bg="#41576B",fg="white")
+    lbl_rut=Label(medico,          text="Rut :",bg="#41576B",fg="white")
+    lbl_especialidad=Label(medico, text="Especialidad :",bg="#41576B",fg="white")
+
+    entry_nombre=Entry(medico,textvariable=nombreM)
+    entry_apellido=Entry(medico,textvariable=apellidoM)
+    entry_numero=Entry(medico,textvariable=numeroM)
+    entry_rut=Entry(medico,textvariable=rutM)
+    entry_especialidad=Entry(medico,textvariable=especialidad)
+
+    #Campos medico
+    lbl_med.grid(row=1,column=1, padx=5, pady=5, sticky=W)
+
+    lbl_rut.grid(row=2,column=0, padx=5, pady=5, sticky=E)
+    entry_rut.grid(row=2,column=1, padx=5, pady=5,sticky=W)
+
+    lbl_nombre.grid(row=3,column=0, padx=5, pady=5, sticky=E)
+    entry_nombre.grid(row=3,column=1, padx=5, pady=5,sticky=W)
+
+    lbl_apellido.grid(row=4,column=0, padx=5, pady=5, sticky=E)
+    entry_apellido.grid(row=4,column=1, padx=5, pady=5,sticky=W)
+
+    lbl_numero.grid(row=5,column=0, padx=5, pady=5, sticky=E)
+    entry_numero.grid(row=5,column=1, padx=5, pady=5,sticky=W)
+
+
+    lbl_especialidad.grid(row=6,column=0, padx=5, pady=5, sticky=E)
+    entry_especialidad.grid(row=6,column=1, padx=5, pady=5,sticky=W)
+
 
 def agregarMedico(Rut,Nombre,Apellido,Numero,Especialidad):
     profesional.append(Profesional(Rut.get(),Nombre.get(),Apellido.get(),Numero.get(),Especialidad.get()))
@@ -533,6 +572,53 @@ def emitirAlerta():
         lista_alerta[lg].setPaciente(lista_paciente[0])
         lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional))])
         insertarAlerta()
+
+def despacharAlerta():
+
+    despacho = Toplevel()
+    despacho.title("Despachar alerta")
+    despacho.geometry("310x420")
+    despacho.config(bg="#41576B")
+
+    lbl_med=Label(despacho,          text="Medico",bg="#41576B",fg="white",font=("Verdena",11))
+    lbl_nombre=Label(despacho,       text="Nombre :",bg="#41576B",fg="white")
+    lbl_apellido=Label(despacho,     text="Apellido :",bg="#41576B",fg="white")
+    lbl_numero=Label(despacho,       text="Numero :",bg="#41576B",fg="white")
+    lbl_rut=Label(despacho,          text="Rut :",bg="#41576B",fg="white")
+    lbl_especialidad=Label(despacho, text="Especialidad :",bg="#41576B",fg="white")
+
+    entry_nombre=Entry(despacho,textvariable=nombreM)
+    entry_apellido=Entry(despacho,textvariable=apellidoM)
+    entry_numero=Entry(despacho,textvariable=numeroM)
+    entry_rut=Entry(despacho,textvariable=rutM)
+    entry_especialidad=Entry(despacho,textvariable=especialidad)
+
+    #Campos despacho
+    lbl_med.grid(row=1,column=1, padx=5, pady=5, sticky=W)
+
+    lbl_rut.grid(row=2,column=0, padx=5, pady=5, sticky=E)
+    entry_rut.grid(row=2,column=1, padx=5, pady=5,sticky=W)
+
+    lbl_nombre.grid(row=3,column=0, padx=5, pady=5, sticky=E)
+    entry_nombre.grid(row=3,column=1, padx=5, pady=5,sticky=W)
+
+    lbl_apellido.grid(row=4,column=0, padx=5, pady=5, sticky=E)
+    entry_apellido.grid(row=4,column=1, padx=5, pady=5,sticky=W)
+
+    lbl_numero.grid(row=5,column=0, padx=5, pady=5, sticky=E)
+    entry_numero.grid(row=5,column=1, padx=5, pady=5,sticky=W)
+
+
+    lbl_especialidad.grid(row=6,column=0, padx=5, pady=5, sticky=E)
+    entry_especialidad.grid(row=6,column=1, padx=5, pady=5,sticky=W)
+
+    #BOTONES
+
+    btn_agregar=Button(despacho,text="Agregar",font=("Verdana",10),height=2,width=6,bg="#74C69D",command=partial(agregarMedico,rutM,nombreM,apellidoM,numeroM,especialidad)).place(x=20,y=300)
+    btn_editar=Button(despacho,text="Editar",font=("Verdana",10),height=2,width=6,command=partial(editarMedico,rutM,nombreM,apellidoM,numeroM,especialidad)).place(x=90,y=300)
+    btn_buscar=Button(despacho,text="Buscar",font=("Verdana",10),height=2,width=6,command=partial(buscarMedico,rutM)).place(x=160,y=300)
+    btn_eliminar=Button(despacho,text="Eliminar",font=("Verdana",10),height=2,width=6,bg="#9D0208",command=partial(eliminarMedico,rutM)).place(x=230,y=300)
+
 
 def insertarPaciente():
     global codigo
@@ -606,15 +692,6 @@ def insertarAlerta(paci,medi):
         pos_des+=1
     pos_al=pos_al+1 """
 
-""" def sumar():
-    global codigo
-    global agr_p
-    global pos_p
-    codigo=codigo+1
-    agr_p=agr_p+1
-    pos_p=pos_p+1
-    print(codigo) """
-
 #Funcion de opciones escogidas
 def item_selected(event):
     for selected_item in tree.selection():
@@ -655,7 +732,7 @@ def item_selected(event):
                 apellidoM.set(auxApellido)
                 numeroM.set(auxNumero)
                 especialidad.set(auxEspecialidad)
-                medico(nombreM,apellidoM,numeroM,rutM,especialidad)
+                infoMedico(nombreM,apellidoM,numeroM,rutM,especialidad)
                 print(valor)
                 return
         #al clickear un paciente en el Menú
@@ -692,7 +769,9 @@ def item_selected(event):
                 print(tree.parent(valor))
                 tree.move(tree.parent(valor),6,pos_p)
                 tree.delete(valor)
+                infoMedico(nombreM,apellidoM,numeroM,rutM,especialidad) 
                 return
+                
         if nombreOpcion=="Actualizar":
             for i in con_p_t:
                 if tree.item(i[0],option='text')!=str(lista_paciente[i[1]]):
@@ -713,10 +792,13 @@ def item_selected(event):
         print(tree.item(2,option='text'))
         if nombreOpcion=="Emitir Alerta" :
             emitirAlerta()
+
         if nombreOpcion=="Medico" :
             medico(nombreM,apellidoM,numeroM,rutM,especialidad)
+
         if nombreOpcion=="Paciente" :
             paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF,condicionF,latitudF,longitudF)
+
         
         #if nombreOpcion=="Pacientes" or  nombreOpcion=='sub opcion 21' : 
 
