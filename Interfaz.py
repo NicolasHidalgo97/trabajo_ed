@@ -577,12 +577,12 @@ def emitirAlerta():
         lg=len(lista_alerta)-1
         lista_alerta[lg].setPaciente(lista_paciente[azar])
         lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional)-1)])
-        insertarAlerta(azar,randint(0,len(profesional)-1))
+        insertarAlerta(azar,randint(0,len(profesional)))
     elif largo==1:
         lista_alerta.append(Alerta(1,comunas[randint(0,30)],prioridad,"Pendiente",date.today(),datetime.now()))
         lg=len(lista_alerta)-1
         lista_alerta[lg].setPaciente(lista_paciente[0])
-        lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional)-1)])
+        lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional))])
         insertarAlerta(azar,randint(0,len(profesional)-1))
 
 def despacharAlerta():
