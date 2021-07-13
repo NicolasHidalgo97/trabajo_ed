@@ -257,6 +257,7 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
 
     #Campos FICHA
 
+<<<<<<< HEAD
     lbl_ficha=Label(paciente,      text="Ficha medica",font=("Verdena",11))
     lbl_direccion=Label(paciente, text="Direccion :")
     lbl_observaciones=Label(paciente,   text="Observaciones :")
@@ -264,6 +265,15 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
     lbl_condicion=Label(paciente,  text="Condición :")
     lbl_latitud=Label(paciente,  text="Latitud :")
     lbl_longitud=Label(paciente,  text="Longitud :")
+=======
+    lbl_ficha=Label(paciente,      text="Ficha medica",bg="#41576B",fg="white",font=("Verdena",11))
+    lbl_direccion=Label(paciente, text="Direccion :",bg="#41576B",fg="white")
+    lbl_observaciones=Label(paciente,   text="Observaciones :",bg="#41576B",fg="white")
+    lbl_patologia=Label(paciente,  text="Patologia :",bg="#41576B",fg="white")
+    lbl_condicion=Label(paciente,  text="Condición :",bg="#41576B",fg="white")
+    lbl_latitud=Label(paciente,  text="Latitud :",bg="#41576B",fg="white")
+    lbl_longitud=Label(paciente,  text="Longitud :",bg="#41576B",fg="white")
+>>>>>>> 43b1953ff2e6490315b41353c9b5d6cbaed9bc0d
 
     entry_direccion=Entry(paciente,textvariable=direccionF)
     entry_observaciones=Entry(paciente,textvariable=observacionesF)
@@ -597,8 +607,11 @@ def emitirAlerta():
         lista_alerta[lg].setPaciente(lista_paciente[0])
         lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional)-1)])
         insertarAlerta(azar,randint(0,len(profesional)-1))
+<<<<<<< HEAD
 
 boton_paciente=Button(root, text="Emitir Alerta",font=("Courier",13),height=2,width=13, bg="#d00000",command=emitirAlerta).place(x=600,y=320)
+=======
+>>>>>>> 43b1953ff2e6490315b41353c9b5d6cbaed9bc0d
 
 def despacharAlerta():
 
@@ -669,6 +682,11 @@ def insertarPaciente():
         con_p_t.append([codigo,i])
 
         codigo=codigo+1
+
+        tree.insert('',tk.END,text=str(lista_paciente[i].getFicha()),iid=codigo,open=False, values=codigo)
+        tree.move(codigo,codigo-1,0)
+
+        codigo+=1
         agr_p=agr_p+1
         pos_p=pos_p+1
         
