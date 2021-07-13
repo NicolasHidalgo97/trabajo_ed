@@ -15,8 +15,10 @@ from datetime import date,datetime
 root = tk.Tk()
 
 
-root.title('Menus jerarquicos')
+root.title('Hospital')
 root.geometry('800x400')
+root.iconphoto(False, tk.PhotoImage(file='hospitall.png'))
+root.resizable(0,0)
 
 # define el  grid layout
 root.rowconfigure(0, weight=2)
