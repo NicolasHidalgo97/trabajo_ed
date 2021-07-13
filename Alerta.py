@@ -15,7 +15,7 @@ class Alerta(Paciente, Profesional):
         self.hora=hora
         cola=[]
     def __str__(self):
-        return self.ubicacion +" "+ str(self.prioridad)+" "+str(self.fecha)
+        return "UBICACION : "+self.ubicacion +" | PRIORIDAD : "+ str(self.prioridad)+" | FECHA : "+str(self.fecha)
     #Getters Settersal
     def getIde(self):
         return self.ide

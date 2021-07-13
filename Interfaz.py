@@ -218,20 +218,25 @@ longitudF=StringVar()
 patologiaF=StringVar()
 
 
-
+imagenM=tk.PhotoImage(file='fondo1.png')
 def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF,condicionF,latitudF,longitudF):
     #variables pacientes
     paciente = Toplevel()
+    background = Label(paciente,image = imagenM, text = "Imagen S.O de fondo")
+    background.place(x = 0, y = 0, relwidth = 1, relheight = 1)
     paciente.title("Ficha Medica")
+<<<<<<< HEAD
     paciente.geometry("310x460")
+=======
+    paciente.geometry("310x400")
+>>>>>>> 26040ed7198d68e513936a5cbb85f61611547536
     paciente.config(bg="#41576B")
 
     lbl_pac=Label(paciente,      text="Paciente",font=("Verdena",11))
-    lbl_pac.config(bg="#41576B",fg="white")
-    lbl_nombre=Label(paciente,   text="Nombre :",bg="#41576B",fg="white")
-    lbl_apellido=Label(paciente, text="Apellido :",bg="#41576B",fg="white")
-    lbl_numero=Label(paciente,   text="Numero :",bg="#41576B",fg="white")
-    lbl_rut=Label(paciente,      text="Rut :",bg="#41576B",fg="white")
+    lbl_nombre=Label(paciente,   text="Nombre :")
+    lbl_apellido=Label(paciente, text="Apellido :")
+    lbl_numero=Label(paciente,   text="Numero :")
+    lbl_rut=Label(paciente,      text="Rut :")
 
     entry_nombre=Entry(paciente,textvariable=nombreP)
     entry_apellido=Entry(paciente,textvariable=apellidoP)
@@ -256,6 +261,7 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
 
     #Campos FICHA
 
+<<<<<<< HEAD
     lbl_ficha=Label(paciente,      text="Ficha medica",bg="#41576B",fg="white",font=("Verdena",11))
     lbl_direccion=Label(paciente, text="Direccion :",bg="#41576B",fg="white")
     lbl_observaciones=Label(paciente,   text="Observaciones :",bg="#41576B",fg="white")
@@ -263,6 +269,12 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
     lbl_condicion=Label(paciente,  text="Condición :",bg="#41576B",fg="white")
     lbl_latitud=Label(paciente,  text="Latitud :",bg="#41576B",fg="white")
     lbl_longitud=Label(paciente,  text="Longitud :",bg="#41576B",fg="white")
+=======
+    lbl_ficha=Label(paciente,      text="Ficha medica",font=("Verdena",11))
+    lbl_direccion=Label(paciente, text="Direccion :")
+    lbl_observaciones=Label(paciente,   text="Observaciones :")
+    lbl_patologia=Label(paciente,  text="Patologia :")
+>>>>>>> 26040ed7198d68e513936a5cbb85f61611547536
 
     entry_direccion=Entry(paciente,textvariable=direccionF)
     entry_observaciones=Entry(paciente,textvariable=observacionesF)
@@ -361,20 +373,22 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
     btn_buscar=Button(paciente,text="Buscar",font=("Verdana",10),height=2,width=6,command=partial(buscarPaciente,rutP)).place(x=160,y=400)
     btn_eliminar=Button(paciente,text="Eliminar",font=("Verdana",10),height=2,width=6,bg="#9D0208",command=partial(eliminarPaciente,rutP)).place(x=230,y=400)
 
-
 def medico(nombreM,apellidoM,numeroM,rutM,especialidad):
 
     medico = Toplevel()
+    background = Label(medico,image = imagenM, text = "Imagen S.O de fondo")
+    background.place(x = 0, y = 0, relwidth = 1, relheight = 1)
     medico.title("Agregar Medico")
-    medico.geometry("310x420")
-    medico.config(bg="#41576B")
+    medico.geometry("310x400")
+    medico.config(bg="Lightblue")
 
-    lbl_med=Label(medico,          text="Medico",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_nombre=Label(medico,       text="Nombre :",bg="#41576B",fg="white")
-    lbl_apellido=Label(medico,     text="Apellido :",bg="#41576B",fg="white")
-    lbl_numero=Label(medico,       text="Numero :",bg="#41576B",fg="white")
-    lbl_rut=Label(medico,          text="Rut :",bg="#41576B",fg="white")
-    lbl_especialidad=Label(medico, text="Especialidad :",bg="#41576B",fg="white")
+
+    lbl_med=Label(medico,          text="Medico",font=("Verdena",11))
+    lbl_nombre=Label(medico,       text="Nombre :")
+    lbl_apellido=Label(medico,     text="Apellido :")
+    lbl_numero=Label(medico,       text="Numero :")
+    lbl_rut=Label(medico,          text="Rut :")
+    lbl_especialidad=Label(medico, text="Especialidad :",bg="white")
 
     entry_nombre=Entry(medico,textvariable=nombreM)
     entry_apellido=Entry(medico,textvariable=apellidoM)
@@ -411,16 +425,19 @@ def medico(nombreM,apellidoM,numeroM,rutM,especialidad):
 def infoPaciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,condicionF,latitudF,longitudF):
     #variables pacientes
     infoPaciente = Toplevel()
+    background = Label(infoPaciente,image = imagenM, text = "Imagen S.O de fondo")
+    background.place(x = 0, y = 0, relwidth = 1, relheight = 1)
     infoPaciente.title("Ficha Medica")
     infoPaciente.geometry("350x400")
     infoPaciente.config(bg="#41576B")
 
-    lbl_pac=Label(infoPaciente,      text="infoPaciente",font=("Verdena",11))
-    lbl_pac.config(bg="#41576B",fg="white")
-    lbl_nombre=Label(infoPaciente,   text="Nombre :",bg="#41576B",fg="white")
-    lbl_apellido=Label(infoPaciente, text="Apellido :",bg="#41576B",fg="white")
-    lbl_numero=Label(infoPaciente,   text="Numero :",bg="#41576B",fg="white")
-    lbl_rut=Label(infoPaciente,      text="Rut :",bg="#41576B",fg="white")
+
+    lbl_pac=Label(infoPaciente,      text="Paciente",font=("Verdena",11))
+    lbl_nombre=Label(infoPaciente,   text="Nombre :")
+    lbl_apellido=Label(infoPaciente, text="Apellido :")
+    lbl_numero=Label(infoPaciente,   text="Numero :")
+    lbl_rut=Label(infoPaciente,      text="Rut :")
+
 
     entry_nombre=Entry(infoPaciente,textvariable=nombreP)
     entry_apellido=Entry(infoPaciente,textvariable=apellidoP)
@@ -445,13 +462,13 @@ def infoPaciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,condic
 
     #Campos FICHA
 
-    lbl_ficha=Label(infoPaciente,      text="Ficha medica",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_direccion=Label(infoPaciente, text="Direccion :",bg="#41576B",fg="white")
-    lbl_observaciones=Label(infoPaciente,   text="Observaciones :",bg="#41576B",fg="white")
-    lbl_patologia=Label(infoPaciente,  text="Patologia :",bg="#41576B",fg="white")
-    lbl_condicion=Label(infoPaciente,  text="Condición :",bg="#41576B",fg="white")
-    lbl_latitud=Label(infoPaciente,  text="Latitud :",bg="#41576B",fg="white")
-    lbl_longitud=Label(infoPaciente,  text="Longitud :",bg="#41576B",fg="white")
+    lbl_ficha=Label(infoPaciente,      text="Ficha medica")
+    lbl_direccion=Label(infoPaciente, text="Direccion :")
+    lbl_observaciones=Label(infoPaciente,   text="Observaciones :")
+    lbl_patologia=Label(infoPaciente,  text="Patologia :")
+    lbl_condicion=Label(infoPaciente,  text="Condición :")
+    lbl_latitud=Label(infoPaciente,  text="Latitud :")
+    lbl_longitud=Label(infoPaciente,  text="Longitud :")
 
     entry_direccion=Entry(infoPaciente,textvariable=direccionF)
     entry_observaciones=Entry(infoPaciente,textvariable=observacionesF)
@@ -480,16 +497,18 @@ def infoPaciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,condic
 def infoMedico(nombreM,apellidoM,numeroM,rutM,especialidad):
     
     medico = Toplevel()
+    background = Label(medico,image = imagenM, text = "Imagen S.O de fondo")
+    background.place(x = 0, y = 0, relwidth = 1, relheight = 1)
     medico.title("Agregar Medico")
-    medico.geometry("310x380")
+    medico.geometry("310x250")
     medico.config(bg="#41576B")
 
-    lbl_med=Label(medico,          text="Medico",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_nombre=Label(medico,       text="Nombre :",bg="#41576B",fg="white")
-    lbl_apellido=Label(medico,     text="Apellido :",bg="#41576B",fg="white")
-    lbl_numero=Label(medico,       text="Numero :",bg="#41576B",fg="white")
-    lbl_rut=Label(medico,          text="Rut :",bg="#41576B",fg="white")
-    lbl_especialidad=Label(medico, text="Especialidad :",bg="#41576B",fg="white")
+    lbl_med=Label(medico,          text="Medico",font=("Verdena",11))
+    lbl_nombre=Label(medico,       text="Nombre :")
+    lbl_apellido=Label(medico,     text="Apellido :")
+    lbl_numero=Label(medico,       text="Numero :")
+    lbl_rut=Label(medico,          text="Rut :")
+    lbl_especialidad=Label(medico, text="Especialidad :")
 
     entry_nombre=Entry(medico,textvariable=nombreM)
     entry_apellido=Entry(medico,textvariable=apellidoM)
