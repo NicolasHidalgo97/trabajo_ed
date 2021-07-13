@@ -14,7 +14,12 @@ from datetime import date,datetime
 
 root = tk.Tk()
 
+#Fondo de pantalla
+imagen0=tk.PhotoImage(file='fondo1.png')
+background = Label(image = imagen0, text = "Imagen S.O de fondo")
+background.place(x = 0, y = 0, relwidth = 1, relheight = 1)
 
+#Se crea root
 root.title('Hospital')
 root.geometry('800x400')
 root.iconphoto(False, tk.PhotoImage(file='hospitall.png'))
@@ -24,12 +29,18 @@ root.resizable(0,0)
 root.rowconfigure(0, weight=2)
 root.columnconfigure(0, weight=1)
 
+#Se crea Frame
+frame=tk.Frame(root,highlightbackground="lightblue",highlightthickness=3)
+frame.grid(row=0,column=0,ipadx=250,ipady=0,padx=0,pady=0)
+
 # crear el treeview
-tree = ttk.Treeview(root)
+tree = ttk.Treeview(frame,height=10,columns=("#0"))
 tree.heading('#0', text='Centro Medico', anchor='w')
-""" imagen1 = tk.PhotoImage(file="4ccc.png")
-imagen2 = tk.PhotoImage(file="a.png")
-fondo=Label(image=imagen2).place(x=550,y=0) """
+tree.column("#0",minwidth=200,width=800, stretch=NO)
+estilo=ttk.Style(frame)
+estilo.configure("Treeview.Heading", font=("Courier",10), foreground="blue")
+estilo.configure("Treeview",rowheigh=700)
+
 # adiciona opciones 
 
 #inicializando
@@ -198,7 +209,7 @@ numeroP=StringVar()
 rutP=IntVar()
 
 #variables ficha medica
-condicionF=StringVar
+condicionF=StringVar()
 direccionF=StringVar()
 observacionesF=StringVar()
 latitudF=StringVar()
@@ -617,7 +628,7 @@ def item_selected(event):
         abierto = item['open']
 
         auxRut=""
-        aurNombre=""
+        auxNombre=""
         auxApellido=""
         auxNumero=""
         auxEspecialidad=""
@@ -654,17 +665,22 @@ def item_selected(event):
                 auxNombre=lista_paciente[i].getNombre()
                 auxApellido=lista_paciente[i].getApellido()
                 auxNumero=lista_paciente[i].getFono()
-         #       auxCondicion=lista_paciente[i].ficha.getCondicion()
-         #       auxObservaciones=""
-          #      auxDireccion=""
-           #     auxLatitud=""
-            #    auxLongitud=""
+                auxCondicion=lista_paciente[i].ficha.getCondicion()
+                auxObservaciones=lista_paciente[i].ficha.getObservaciones()
+                auxDireccion=lista_paciente[i].ficha.getDireccion()
+                auxLatitud=lista_paciente[i].ficha.getLatitud()
+                auxLongitud=lista_paciente[i].ficha.getLongitud()
 
                 rutP.set(auxRut)
                 nombreP.set(auxNombre)
                 apellidoP.set(auxApellido)
                 numeroP.set(auxNumero)
-             #   condicionF.set(auxCondicion)
+                condicionF.set(auxCondicion)
+                observacionesF.set(auxObservaciones)
+                direccionF.set(auxDireccion)
+                latitudF.set(auxLatitud)
+                longitudF.set(auxLongitud)
+
                 infoPaciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,condicionF,longitudF,latitudF)
                 print(valor)
 
