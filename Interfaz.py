@@ -204,7 +204,7 @@ numeroP=StringVar()
 rutP=IntVar()
 
 #variables ficha medica
-condicionF=StringVar
+condicionF=StringVar()
 direccionF=StringVar()
 observacionesF=StringVar()
 latitudF=StringVar()
@@ -588,7 +588,7 @@ def item_selected(event):
         abierto = item['open']
 
         auxRut=""
-        aurNombre=""
+        auxNombre=""
         auxApellido=""
         auxNumero=""
         auxEspecialidad=""
@@ -625,17 +625,22 @@ def item_selected(event):
                 auxNombre=lista_paciente[i].getNombre()
                 auxApellido=lista_paciente[i].getApellido()
                 auxNumero=lista_paciente[i].getFono()
-         #       auxCondicion=lista_paciente[i].ficha.getCondicion()
-         #       auxObservaciones=""
-          #      auxDireccion=""
-           #     auxLatitud=""
-            #    auxLongitud=""
+                auxCondicion=lista_paciente[i].ficha.getCondicion()
+                auxObservaciones=lista_paciente[i].ficha.getObservaciones()
+                auxDireccion=lista_paciente[i].ficha.getDireccion()
+                auxLatitud=lista_paciente[i].ficha.getLatitud()
+                auxLongitud=lista_paciente[i].ficha.getLongitud()
 
                 rutP.set(auxRut)
                 nombreP.set(auxNombre)
                 apellidoP.set(auxApellido)
                 numeroP.set(auxNumero)
-             #   condicionF.set(auxCondicion)
+                condicionF.set(auxCondicion)
+                observacionesF.set(auxObservaciones)
+                direccionF.set(auxDireccion)
+                latitudF.set(auxLatitud)
+                longitudF.set(auxLongitud)
+
                 infoPaciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,condicionF,longitudF,latitudF)
                 print(valor)
 
