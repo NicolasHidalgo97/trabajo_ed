@@ -76,6 +76,7 @@ imagen5 = tk.PhotoImage(file="editar.png")
 imagen6 = tk.PhotoImage(file="comprobado.png")
 imagen7 = tk.PhotoImage(file="pendiente.png")
 imagen8 = tk.PhotoImage(file="advertencia.png")
+imagen9 = tk.PhotoImage(file="actualizar.png")
 #Alertas
 tree.insert('', tk.END, text='Alertas', iid=0, image=imagen1, open=False,values=0)
 tree.insert('', tk.END, text='Pendientes', iid=1, image=imagen7, open=False,values=1)
@@ -102,7 +103,7 @@ tree.insert('', tk.END, text='Emitir Alerta', iid=14, image=imagen8, open=False,
 tree.insert('', tk.END, text='Añadir/Modificar/Eliminar',image=imagen5, iid=16, open=False)
 tree.insert('', tk.END, text='Paciente', iid=17,image=imagen4, open=False)
 tree.insert('', tk.END, text='Medico', iid=18, image=imagen3,open=False)
-tree.insert('', tk.END, text='Actualizar', iid=19, image=imagen3,open=False)
+tree.insert('', tk.END, text='Actualizar', iid=19, image=imagen9,open=False)
 
 
 tree.move(1, 0, 0)
