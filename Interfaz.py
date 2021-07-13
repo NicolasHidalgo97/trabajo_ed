@@ -99,6 +99,7 @@ tree.insert('', tk.END, text=lista_alerta[0], iid=2, open=False,values=2)
 tree.insert('', tk.END, text=lista_alerta[0].paciente, iid=3, open=False,values=3)
 tree.insert('', tk.END, text=lista_alerta[0].paciente.getFicha(), iid=4, open=False,values=4)
 tree.insert('', tk.END, text=lista_alerta[0].getProfesional(), iid=5, open=False,values=5)
+
 tree.insert('', tk.END, text='Despachar', iid=15, open=False,values=15)
 
 
@@ -259,7 +260,6 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
 
     #Campos FICHA
 
-<<<<<<< HEAD
     lbl_ficha=Label(paciente,      text="Ficha medica",font=("Verdena",11))
     lbl_direccion=Label(paciente, text="Direccion :")
     lbl_observaciones=Label(paciente,   text="Observaciones :")
@@ -267,15 +267,6 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
     lbl_condicion=Label(paciente,  text="Condición :")
     lbl_latitud=Label(paciente,  text="Latitud :")
     lbl_longitud=Label(paciente,  text="Longitud :")
-=======
-    lbl_ficha=Label(paciente,      text="Ficha medica",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_direccion=Label(paciente, text="Direccion :",bg="#41576B",fg="white")
-    lbl_observaciones=Label(paciente,   text="Observaciones :",bg="#41576B",fg="white")
-    lbl_patologia=Label(paciente,  text="Patologia :",bg="#41576B",fg="white")
-    lbl_condicion=Label(paciente,  text="Condición :",bg="#41576B",fg="white")
-    lbl_latitud=Label(paciente,  text="Latitud :",bg="#41576B",fg="white")
-    lbl_longitud=Label(paciente,  text="Longitud :",bg="#41576B",fg="white")
->>>>>>> 43b1953ff2e6490315b41353c9b5d6cbaed9bc0d
 
     entry_direccion=Entry(paciente,textvariable=direccionF)
     entry_observaciones=Entry(paciente,textvariable=observacionesF)
@@ -535,8 +526,6 @@ def infoMedico(nombreM,apellidoM,numeroM,rutM,especialidad):
 
     lbl_especialidad.grid(row=6,column=0, padx=5, pady=5, sticky=E)
     entry_especialidad.grid(row=6,column=1, padx=5, pady=5,sticky=W)
-    btn_agregar=Button(medico,text="Asignar",font=("Verdana",10),height=2,width=6,bg="#74C69D",command=partial(agregarMedico,rutM,nombreM,apellidoM,numeroM,especialidad)).place(x=20,y=200)
-    btn_buscar=Button(medico,text="Buscar",font=("Verdana",10),height=2,width=6,command=partial(buscarMedico,rutM)).place(x=100,y=200)
 
 def agregarMedico(Rut,Nombre,Apellido,Numero,Especialidad):
     profesional.append(Profesional(Rut.get(),Nombre.get(),Apellido.get(),Numero.get(),Especialidad.get()))
@@ -609,11 +598,8 @@ def emitirAlerta():
         lista_alerta[lg].setPaciente(lista_paciente[0])
         lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional)-1)])
         insertarAlerta(azar,randint(0,len(profesional)-1))
-<<<<<<< HEAD
 
 boton_paciente=Button(root, text="Emitir Alerta",font=("Courier",13),height=2,width=13, bg="#d00000",command=emitirAlerta).place(x=600,y=320)
-=======
->>>>>>> 43b1953ff2e6490315b41353c9b5d6cbaed9bc0d
 
 
 def insertarPaciente():
