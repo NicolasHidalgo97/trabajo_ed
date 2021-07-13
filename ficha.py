@@ -11,7 +11,7 @@ class Ficha_Medica():
         self.longitud=Longitud
     
     def __str__(self):
-        return self.condicion 
+        return "CONDICION : "+self.condicion+" | COORDENADAS : "+self.latitud+" "+self.longitud
 
     def getCondicion(self):
         return self.condicion

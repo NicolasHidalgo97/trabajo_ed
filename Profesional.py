@@ -10,7 +10,7 @@ class Profesional():
         self.especialidad=Especialidad
 
     def __str__(self):
-        return str(self.nombre) +" "+ str(self.apellido)+" /rut: "+str(self.rut)+" "+str(self.especialidad)
+        return "PROFESIONAL : "+str(self.nombre) +" "+ str(self.apellido)+" | RUT : "+str(self.rut)+" | ESPECIALIDAD : "+str(self.especialidad)
 
     #Getters Setters
     def getRut(self):

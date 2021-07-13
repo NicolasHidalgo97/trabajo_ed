@@ -11,7 +11,7 @@ class Paciente(Ficha_Medica):
         self.apellido=Apellido
         self.fono=Fono
     def __str__(self):
-        return self.nombre +" "+ self.apellido+" /rut: "+str(self.rut)+" /fono: "+str(self.fono)
+        return "PACIENTE : "+self.nombre +" "+ self.apellido+" | RUT : "+str(self.rut)+" | FONO : "+str(self.fono)
         
     #Getters Setters
     def getRut(self):
