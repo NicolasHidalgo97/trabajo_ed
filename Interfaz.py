@@ -225,11 +225,7 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
     background = Label(paciente,image = imagenM, text = "Imagen S.O de fondo")
     background.place(x = 0, y = 0, relwidth = 1, relheight = 1)
     paciente.title("Ficha Medica")
-<<<<<<< HEAD
     paciente.geometry("310x460")
-=======
-    paciente.geometry("310x400")
->>>>>>> 26040ed7198d68e513936a5cbb85f61611547536
     paciente.config(bg="#41576B")
 
     lbl_pac=Label(paciente,      text="Paciente",font=("Verdena",11))
@@ -261,7 +257,6 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
 
     #Campos FICHA
 
-<<<<<<< HEAD
     lbl_ficha=Label(paciente,      text="Ficha medica",bg="#41576B",fg="white",font=("Verdena",11))
     lbl_direccion=Label(paciente, text="Direccion :",bg="#41576B",fg="white")
     lbl_observaciones=Label(paciente,   text="Observaciones :",bg="#41576B",fg="white")
@@ -269,12 +264,6 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
     lbl_condicion=Label(paciente,  text="Condición :",bg="#41576B",fg="white")
     lbl_latitud=Label(paciente,  text="Latitud :",bg="#41576B",fg="white")
     lbl_longitud=Label(paciente,  text="Longitud :",bg="#41576B",fg="white")
-=======
-    lbl_ficha=Label(paciente,      text="Ficha medica",font=("Verdena",11))
-    lbl_direccion=Label(paciente, text="Direccion :")
-    lbl_observaciones=Label(paciente,   text="Observaciones :")
-    lbl_patologia=Label(paciente,  text="Patologia :")
->>>>>>> 26040ed7198d68e513936a5cbb85f61611547536
 
     entry_direccion=Entry(paciente,textvariable=direccionF)
     entry_observaciones=Entry(paciente,textvariable=observacionesF)
@@ -600,12 +589,12 @@ def emitirAlerta():
         lg=len(lista_alerta)-1
         lista_alerta[lg].setPaciente(lista_paciente[azar])
         lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional)-1)])
-        insertarAlerta(azar,randint(0,len(profesional)))
+        insertarAlerta(azar,randint(0,len(profesional)-1))
     elif largo==1:
         lista_alerta.append(Alerta(1,comunas[randint(0,30)],prioridad,"Pendiente",date.today(),datetime.now()))
         lg=len(lista_alerta)-1
         lista_alerta[lg].setPaciente(lista_paciente[0])
-        lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional))])
+        lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional)-1)])
         insertarAlerta(azar,randint(0,len(profesional)-1))
 
 def despacharAlerta():
