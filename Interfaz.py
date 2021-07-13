@@ -539,10 +539,13 @@ def eliminarMedico(Rut):
             profesional.remove(i)
             for x in con_mpt:
                 if x[1]==z:
+                    print(con_mpt)
                     con_mpt.remove(x)
                     for y in range(0,len(con_mpt)):
                         if y>=x[1]:
+                            print(con_mpt)
                             con_mpt[y][1]-=1
+                            print(con_mpt)
             for x in con_m_t:
                 if x[1]==z:
                     marcado.append(x[0])
@@ -553,6 +556,7 @@ def eliminarMedico(Rut):
             #actualizarTablaPtes()
         z+=1
 
+
 def emitirAlerta():
     contador=0
     largo=len(lista_paciente)
@@ -561,17 +565,17 @@ def emitirAlerta():
     if largo>1:
         id=len(lista_alerta)+1
         azar=randint(0,largo-1)
-        lista_alerta.append(Alerta(id,comunas[randint(0,31)],prioridad,"Pendiente",date.today(),datetime.now()))
+        lista_alerta.append(Alerta(id,comunas[randint(0,30)],prioridad,"Pendiente",date.today(),datetime.now()))
         lg=len(lista_alerta)-1
         lista_alerta[lg].setPaciente(lista_paciente[azar])
-        lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional))])
-        insertarAlerta(azar,randint(0,len(profesional)))
+        lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional)-1)])
+        insertarAlerta(azar,randint(0,len(profesional)-1))
     elif largo==1:
-        lista_alerta.append(Alerta(1,comunas[randint(0,31)],prioridad,"Pendiente",date.today(),datetime.now()))
+        lista_alerta.append(Alerta(1,comunas[randint(0,30)],prioridad,"Pendiente",date.today(),datetime.now()))
         lg=len(lista_alerta)-1
         lista_alerta[lg].setPaciente(lista_paciente[0])
-        lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional))])
-        insertarAlerta()
+        lista_alerta[lg].setProfesional(profesional[randint(0,len(profesional)-1)])
+        insertarAlerta(azar,randint(0,len(profesional)-1))
 
 def despacharAlerta():
 
@@ -780,11 +784,13 @@ def item_selected(event):
                 if tree.item(i[0],option='text')!=str(profesional[i[1]]):
                     tree.item(i[0],text=str(profesional[i[1]]))
             for i in con_apt:
-                if tree.item(i[0],option='text')!=str(lista_paciente[i[1]]):
-                    tree.item(i[0],text=str(lista_paciente[i[1]]))
+                if i[1]<len(lista_paciente):
+                    if tree.item(i[0],option='text')!=str(lista_paciente[i[1]]):
+                        tree.item(i[0],text=str(lista_paciente[i[1]]))
             for i in con_mpt:
-                if tree.item(i[0],option='text')!=str(profesional[i[1]]):
-                    tree.item(i[0],text=str(profesional[i[1]]))    
+                 if i[1]<len(profesional):
+                    if tree.item(i[0],option='text')!=str(profesional[i[1]]):
+                        tree.item(i[0],text=str(profesional[i[1]]))    
             for i in marcado:
                 tree.delete(i)
             marcado=[]
