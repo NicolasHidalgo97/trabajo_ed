@@ -223,7 +223,7 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
     #variables pacientes
     paciente = Toplevel()
     paciente.title("Ficha Medica")
-    paciente.geometry("310x420")
+    paciente.geometry("310x460")
     paciente.config(bg="#41576B")
 
     lbl_pac=Label(paciente,      text="Paciente",font=("Verdena",11))
@@ -260,21 +260,33 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
     lbl_direccion=Label(paciente, text="Direccion :",bg="#41576B",fg="white")
     lbl_observaciones=Label(paciente,   text="Observaciones :",bg="#41576B",fg="white")
     lbl_patologia=Label(paciente,  text="Patologia :",bg="#41576B",fg="white")
+    lbl_condicion=Label(paciente,  text="Condición :",bg="#41576B",fg="white")
+    lbl_latitud=Label(paciente,  text="Latitud :",bg="#41576B",fg="white")
+    lbl_longitud=Label(paciente,  text="Longitud :",bg="#41576B",fg="white")
 
     entry_direccion=Entry(paciente,textvariable=direccionF)
     entry_observaciones=Entry(paciente,textvariable=observacionesF)
     entry_patologia=Entry(paciente,textvariable=patologiaF)
+    entry_condicion=Entry(paciente,textvariable=condicionF)
+    entry_latitud=Entry(paciente,textvariable=latitudF)
+    entry_longitud=Entry(paciente,textvariable=longitudF)
 
     lbl_ficha.grid(row=6,column=1, padx=5, pady=5, sticky=W)
 
     lbl_direccion.grid(row=7,column=0, padx=5, pady=5, sticky=E)
     entry_direccion.grid(row=7,column=1, padx=5, pady=5,sticky=W)
 
-    lbl_observaciones.grid(row=8,column=0, padx=5, pady=5, sticky=E)
-    entry_observaciones.grid(row=8,column=1, padx=5, pady=5,sticky=W)
+    lbl_condicion.grid(row=8,column=0, padx=5, pady=5, sticky=E)
+    entry_condicion.grid(row=8,column=1, padx=5, pady=5,sticky=W)
 
-    lbl_patologia.grid(row=9,column=0, padx=5, pady=5, sticky=E)
-    entry_patologia.grid(row=9,column=1, padx=5, pady=5,sticky=W)
+    lbl_observaciones.grid(row=9,column=0, padx=5, pady=5, sticky=E)
+    entry_observaciones.grid(row=9,column=1, padx=5, pady=5,sticky=W)
+
+    lbl_latitud.grid(row=10, column=0, padx=5, pady=5, sticky=E)
+    entry_latitud.grid(row=10,column=1, padx=5, pady=5,sticky=W)
+
+    lbl_longitud.grid(row=11, column=0, padx=5, pady=5, sticky=E)
+    entry_longitud.grid(row=11,column=1, padx=5, pady=5,sticky=W)
 
     #BOTONES
     
@@ -344,10 +356,10 @@ def paciente(nombreP,apellidoP,numeroP,rutP,direccionF,observacionesF,patologiaF
                 #actualizarTablaPtes()
             z+=1
 
-    btn_agregar=Button(paciente,text="Agregar",font=("Verdana",10),height=2,width=6, bg="#74C69D",command=partial(guardarPaciente,rutP,nombreP,apellidoP,numeroP,direccionF,patologiaF,observacionesF,agr_p,codigo,pos_p)).place(x=20,y=300)
-    btn_editar=Button(paciente,text="Editar",font=("Verdana",10),height=2,width=6,command=partial(editarPaciente,rutP,nombreP,apellidoP,numeroP,direccionF,patologiaF,observacionesF)).place(x=90,y=300)
-    btn_buscar=Button(paciente,text="Buscar",font=("Verdana",10),height=2,width=6,command=partial(buscarPaciente,rutP)).place(x=160,y=300)
-    btn_eliminar=Button(paciente,text="Eliminar",font=("Verdana",10),height=2,width=6,bg="#9D0208",command=partial(eliminarPaciente,rutP)).place(x=230,y=300)
+    btn_agregar=Button(paciente,text="Agregar",font=("Verdana",10),height=2,width=6, bg="#74C69D",command=partial(guardarPaciente,rutP,nombreP,apellidoP,numeroP,direccionF,patologiaF,observacionesF,agr_p,codigo,pos_p)).place(x=20,y=400)
+    btn_editar=Button(paciente,text="Editar",font=("Verdana",10),height=2,width=6,command=partial(editarPaciente,rutP,nombreP,apellidoP,numeroP,direccionF,patologiaF,observacionesF)).place(x=90,y=400)
+    btn_buscar=Button(paciente,text="Buscar",font=("Verdana",10),height=2,width=6,command=partial(buscarPaciente,rutP)).place(x=160,y=400)
+    btn_eliminar=Button(paciente,text="Eliminar",font=("Verdana",10),height=2,width=6,bg="#9D0208",command=partial(eliminarPaciente,rutP)).place(x=230,y=400)
 
 
 def medico(nombreM,apellidoM,numeroM,rutM,especialidad):
@@ -584,10 +596,20 @@ def despacharAlerta():
     despacho.geometry("310x420")
     despacho.config(bg="#41576B")
 
+    lbl_alerta=Label(despacho, text="Alerta", bg="#41576B",fg="white",font=("Verdena",13))
+    lbl_prioridad=Label(despacho, text="Prioridad: ",bg="#41576B",fg="white",font=("Verdena",11))
+    lbl_paciente=Label(despacho,text="Paciente",bg="#41576B",fg="white",font=("Verdena",13))
+    lbl_nombreP=Label(despacho, text="Nombre: ",bg="#41576B",fg="white",font=("Verdena",11))
+    lbl_apellidoP=Label(despacho, text="Apellido: ",bg="#41576B",fg="white",font=("Verdena",11))
+    lbl_rutP=Label(despacho, text="Rut: ",bg="#41576B",fg="white",font=("Verdena",11))
+    lbl_direccion=Label(despacho, text="Direccion: ",bg="#41576B",fg="white",font=("Verdena",11))
+    lbl_fonoP=Label(despacho, text="Fono: ",bg="#41576B",fg="white",font=("Verdena",11))
+
+
     lbl_med=Label(despacho,          text="Medico",bg="#41576B",fg="white",font=("Verdena",11))
-    lbl_nombre=Label(despacho,       text="Nombre :",bg="#41576B",fg="white")
-    lbl_apellido=Label(despacho,     text="Apellido :",bg="#41576B",fg="white")
-    lbl_numero=Label(despacho,       text="Numero :",bg="#41576B",fg="white")
+    lbl_nombreMed=Label(despacho,       text="Nombre :",bg="#41576B",fg="white")
+    lbl_apellidoMed=Label(despacho,     text="Apellido :",bg="#41576B",fg="white")
+    lbl_numeroMed=Label(despacho,       text="Numero :",bg="#41576B",fg="white")
     lbl_rut=Label(despacho,          text="Rut :",bg="#41576B",fg="white")
     lbl_especialidad=Label(despacho, text="Especialidad :",bg="#41576B",fg="white")
 
@@ -603,13 +625,13 @@ def despacharAlerta():
     lbl_rut.grid(row=2,column=0, padx=5, pady=5, sticky=E)
     entry_rut.grid(row=2,column=1, padx=5, pady=5,sticky=W)
 
-    lbl_nombre.grid(row=3,column=0, padx=5, pady=5, sticky=E)
+    lbl_nombreMed.grid(row=3,column=0, padx=5, pady=5, sticky=E)
     entry_nombre.grid(row=3,column=1, padx=5, pady=5,sticky=W)
 
-    lbl_apellido.grid(row=4,column=0, padx=5, pady=5, sticky=E)
+    lbl_apellidoMed.grid(row=4,column=0, padx=5, pady=5, sticky=E)
     entry_apellido.grid(row=4,column=1, padx=5, pady=5,sticky=W)
 
-    lbl_numero.grid(row=5,column=0, padx=5, pady=5, sticky=E)
+    lbl_numeroMed.grid(row=5,column=0, padx=5, pady=5, sticky=E)
     entry_numero.grid(row=5,column=1, padx=5, pady=5,sticky=W)
 
 

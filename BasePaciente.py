@@ -14,4 +14,4 @@ pcte1.setFicha(Ficha_Medica("Depresion","Ninguna","Presidente Riesco 6967","70,5
 pcte2.setFicha(Ficha_Medica("Hipertiroidismo","Ninguna","Pasaje Presidente 685","71,65","71,35"))
 pcte3.setFicha(Ficha_Medica("Hipertenso","Ninguna","Calle San Martín 870","70,56","72,35"))
 pcte4.setFicha(Ficha_Medica("Diabético","insulina normal","Alensandri 147","70,76","72,95"))
-pcte4.setFicha(Ficha_Medica("Cáncer","Ninguna","Porvenir 463","71,64","72,33"))
+pcte5.setFicha(Ficha_Medica("Cáncer","Ninguna","Porvenir 463","71,64","72,33"))
